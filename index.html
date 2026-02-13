@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7MTNPSFXQJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7MTNPSFXQJ');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill Swap Community Hub</title>
@@ -1211,16 +1220,25 @@
         }
 
         function navigateTo(pageName) {
-            pages.forEach(page => page.classList.remove('active'));
-            navLinks.forEach(link => link.classList.remove('active'));
+    pages.forEach(page => page.classList.remove('active'));
+    navLinks.forEach(link => link.classList.remove('active'));
 
-            document.getElementById(pageName).classList.add('active');
-            const activeLink = document.querySelector(`[data-page="${pageName}"]`);
-            if (activeLink) activeLink.classList.add('active');
+    document.getElementById(pageName).classList.add('active');
+    const activeLink = document.querySelector(`[data-page="${pageName}"]`);
+    if (activeLink) activeLink.classList.add('active');
 
-            navMenu.classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    navMenu.classList.remove('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 🔥 IMPORTANT: Send page view to Google Analytics
+    if (typeof gtag === "function") {
+        gtag('event', 'page_view', {
+            page_title: pageName,
+            page_path: '/' + pageName
+        });
+    }
+}
+
 
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
