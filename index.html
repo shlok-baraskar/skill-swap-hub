@@ -1,155 +1,575 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7MTNPSFXQJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-7MTNPSFXQJ');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skill Swap Community Hub</title>
-    <meta name="description" content="Skill Swap Community Hub - Exchange skills like coding, music, languages, business and fitness. Connect with learners worldwide and grow together.">
-<meta name="keywords" content="skill exchange, learn coding, music lessons, language exchange, fitness training, business skills">
-    <link rel="stylesheet" href="styles.css">
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vgukmbtww1");
-</script>
+    <title>SkillSwap Hub - Learn & Teach Together</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a.active {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .cta-btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .categories {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .category-name {
+            font-size: 20px;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .category-count {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .testimonials {
+            margin: 60px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-text {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .author-title {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .rating {
+            color: #ffa500;
+            font-weight: 600;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .footer-content {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            font-size: 24px;
+            color: #667eea;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">SkillSwap Hub</a>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul id="navMenu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="register.html" class="nav-cta">Join Now</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="page active">
-        <div class="hero">
-            <h1>Skill Swap Community Hub</h1>
-            <p>Exchange Skills, Build Connections, Grow Together</p>
-            <a href="register.html" class="cta-button">Start Swapping Today →</a>
-        </div>
-
-        <!-- Stats Section -->
-        <div class="stats-section">
-            <div class="stat-card">
-                <div class="stat-number">15K+</div>
-                <div class="stat-label">Active Members</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">50K+</div>
-                <div class="stat-label">Skills Exchanged</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">95%</div>
-                <div class="stat-label">Success Rate</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">200+</div>
-                <div class="stat-label">Skill Categories</div>
-            </div>
-        </div>
-
-        <h2 class="section-title">Popular Skill Categories</h2>
-        <p class="section-subtitle">Discover what you can learn and teach in our vibrant community</p>
-        
-        <div class="skill-grid">
-            <div class="skill-card" onclick="location.href='music.html'">
-                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=500" alt="Music">
-                <div class="skill-card-content">
-                    <span class="skill-icon">🎸</span>
-                    <h3>Music & Arts</h3>
-                    <p>Guitar lessons, piano, painting, digital art, and more creative skills to express yourself.</p>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo">🎓 SkillSwap Hub</div>
+                <div class="nav-links">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="browse-skills.html">Browse Skills</a>
+                    <a href="teach.html">Teach</a>
+                    <a href="community.html">Community</a>
+                    <a href="profile.html">Profile</a>
                 </div>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1>Learn Anything, Teach Everything</h1>
+            <p>Connect with skilled teachers and eager learners in a vibrant community</p>
+            <div class="cta-buttons">
+                <a href="browse-skills.html" class="cta-btn cta-primary">🔍 Explore Skills</a>
+                <a href="teach.html" class="cta-btn cta-secondary">🎯 Start Teaching</a>
+            </div>
+        </section>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h3 class="feature-title">Learn from Experts</h3>
+                <p class="feature-description">
+                    Access thousands of skilled teachers ready to share their knowledge and help you master new skills.
+                </p>
             </div>
 
-            <div class="skill-card" onclick="location.href='technology.html'">
-                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500" alt="Coding">
-                <div class="skill-card-content">
-                    <span class="skill-icon">💻</span>
-                    <h3>Technology</h3>
-                    <p>Web development, coding, app development, and tech support for the digital age.</p>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3 class="feature-title">Teach & Earn</h3>
+                <p class="feature-description">
+                    Share your expertise, build your reputation, and earn money doing what you love.
+                </p>
             </div>
 
-            <div class="skill-card" onclick="location.href='languages.html'">
-                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500" alt="Languages">
-                <div class="skill-card-content">
-                    <span class="skill-icon">🌍</span>
-                    <h3>Languages</h3>
-                    <p>Learn new languages through direct exchange with native speakers worldwide.</p>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title">Global Community</h3>
+                <p class="feature-description">
+                    Connect with learners and teachers from around the world, anytime, anywhere.
+                </p>
             </div>
 
-            <div class="skill-card" onclick="location.href='business.html'">
-                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500" alt="Business">
-                <div class="skill-card-content">
-                    <span class="skill-icon">📊</span>
-                    <h3>Business Skills</h3>
-                    <p>Marketing, accounting, business strategy, and entrepreneurship knowledge.</p>
-                </div>
-            </div>
-
-            <div class="skill-card" onclick="location.href='fitness.html'">
-                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500" alt="Fitness">
-                <div class="skill-card-content">
-                    <span class="skill-icon">💪</span>
-                    <h3>Fitness & Wellness</h3>
-                    <p>Yoga, personal training, nutrition advice, and meditation practices.</p>
-                </div>
-            </div>
-
-            <div class="skill-card" onclick="location.href='crafts.html'">
-                <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=500" alt="Crafts">
-                <div class="skill-card-content">
-                    <span class="skill-icon">✂️</span>
-                    <h3>Crafts & DIY</h3>
-                    <p>Woodworking, knitting, home repair, and handmade crafts for your home.</p>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3 class="feature-title">Flexible Schedule</h3>
+                <p class="feature-description">
+                    Learn and teach on your own time with flexible scheduling that fits your lifestyle.
+                </p>
             </div>
         </div>
 
-        <!-- Testimonials -->
-        <div class="testimonials">
-            <h2 class="section-title">What Our Community Says</h2>
-            <div class="testimonial-grid">
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Active Learners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">Expert Teachers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Skill Categories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100K+</div>
+                    <div class="stat-label">Sessions Completed</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <h2 class="section-title">Popular Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="location.href='browse-skills.html'">
+                    <div class="category-icon">💻</div>
+                    <div class="category-name">Technology</div>
+                    <div class="category-count">1,234 skills available</div>
+                </div>
+
+                <div class="category-card" onclick="location.href='browse-skills.html'">
+                    <div class="category-icon">🎨</div>
+                    <div class="category-name">Creative Arts</div>
+                    <div class="category-count">892 skills available</div>
+                </div>
+
+                <div class="category-card" onclick="location.href='browse-skills.html'">
+                    <div class="category-icon">💼</div>
+                    <div class="category-name">Business</div>
+                    <div class="category-count">567 skills available</div>
+                </div>
+
+                <div class="category-card" onclick="location.href='browse-skills.html'">
+                    <div class="category-icon">🗣️</div>
+                    <div class="category-name">Languages</div>
+                    <div class="category-count">423 skills available</div>
+                </div>
+
+                <div class="category-card" onclick="location.href='browse-skills.html'">
+                    <div class="category-icon">🎵</div>
+                    <div class="category-name">Music</div>
+                    <div class="category-count">345 skills available</div>
+                </div>
+
+                <div class="category-card" onclick="location.href='browse-skills.html'">
+                    <div class="category-icon">🏃</div>
+                    <div class="category-name">Fitness & Health</div>
+                    <div class="category-count">278 skills available</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2 class="section-title">Success Stories</h2>
+            <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"I learned Spanish while teaching guitar. Best exchange ever! The platform made it so easy to find the perfect match."</p>
-                    <p class="testimonial-author">- Sarah M., Guitar Teacher</p>
+                    <p class="testimonial-text">
+                        "SkillSwap Hub changed my career! I learned web development from scratch and now I'm working as a freelance developer. The teachers here are amazing!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah Martinez</div>
+                            <div class="author-title">Web Developer</div>
+                        </div>
+                        <div class="rating">⭐ 5.0</div>
+                    </div>
                 </div>
+
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"Traded my coding skills for photography lessons. Now I have a new hobby and made a great friend!"</p>
-                    <p class="testimonial-author">- David L., Software Developer</p>
+                    <p class="testimonial-text">
+                        "Teaching on SkillSwap has been incredibly rewarding. I've met students from all over the world and earned extra income doing what I love."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <div class="author-name">Michael Rodriguez</div>
+                            <div class="author-title">Spanish Teacher</div>
+                        </div>
+                        <div class="rating">⭐ 5.0</div>
+                    </div>
                 </div>
+
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"The matching algorithm is brilliant. Found someone with my exact schedule and skill level immediately."</p>
-                    <p class="testimonial-author">- Emma R., Marketing Specialist</p>
+                    <p class="testimonial-text">
+                        "The community here is supportive and passionate. I've learned guitar, photography, and now I'm teaching others about digital marketing!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">EW</div>
+                        <div class="author-info">
+                            <div class="author-name">Emma Wilson</div>
+                            <div class="author-title">Marketing Specialist</div>
+                        </div>
+                        <div class="rating">⭐ 5.0</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <h3 style="color: #333; margin-bottom: 15px;">Join SkillSwap Hub Today</h3>
+                <p>Start your learning journey or share your knowledge with thousands of eager learners.</p>
+                <div style="margin: 30px 0;">
+                    <a href="browse-skills.html" class="cta-btn cta-primary" style="margin: 0 10px;">Get Started</a>
+                    <a href="teach.html" class="cta-btn cta-secondary" style="margin: 0 10px; color: #667eea; border: 2px solid #667eea;">Become a Teacher</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">💼</a>
+                </div>
+                <p style="margin-top: 30px; color: #999; font-size: 14px;">
+                    © 2026 SkillSwap Hub. All rights reserved.
+                </p>
+            </div>
+        </footer>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
