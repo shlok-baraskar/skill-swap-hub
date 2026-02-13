@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teach a Skill - SkillSwap Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a.active {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .hero {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .skill-level {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .level-option {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .level-option:hover {
+            border-color: #667eea;
+        }
+
+        .level-option input[type="radio"] {
+            display: none;
+        }
+
+        .level-option input[type="radio"]:checked + label {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .level-option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .availability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .day-checkbox {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .day-checkbox:hover {
+            border-color: #667eea;
+        }
+
+        .day-checkbox input[type="checkbox"]:checked ~ label {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .benefits {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .benefits h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-card {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .benefit-desc {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .form-container,
+            .hero,
+            .benefits {
+                padding: 25px;
+            }
+
+            .skill-level {
+                flex-direction: column;
+            }
+
+            .level-option {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo">🎓 SkillSwap Hub</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="browse-skills.html">Browse Skills</a>
+                    <a href="teach.html" class="active">Teach</a>
+                    <a href="community.html">Community</a>
+                    <a href="profile.html">Profile</a>
+                </div>
+            </nav>
+        </header>
+
+        <div class="hero">
+            <h1>Share Your Expertise</h1>
+            <p>Join thousands of teachers sharing knowledge and earning while helping others grow. Start teaching today and make a difference!</p>
+        </div>
+
+        <div class="form-container">
+            <form id="teachForm">
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">👤</span>
+                        Basic Information
+                    </h2>
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">📚</span>
+                        Skill Details
+                    </h2>
+                    <div class="form-group">
+                        <label for="skillName">What skill will you teach? *</label>
+                        <input type="text" id="skillName" name="skillName" placeholder="e.g., Web Development, Guitar, Spanish" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="technology">Technology</option>
+                            <option value="creative">Creative Arts</option>
+                            <option value="business">Business</option>
+                            <option value="languages">Languages</option>
+                            <option value="lifestyle">Lifestyle</option>
+                            <option value="music">Music</option>
+                            <option value="fitness">Fitness & Health</option>
+                            <option value="cooking">Cooking</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Skill Description *</label>
+                        <textarea id="description" name="description" placeholder="Describe what you'll teach, who it's for, and what students will learn..." required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">⭐</span>
+                        Experience Level
+                    </h2>
+                    <div class="form-group">
+                        <label>What level can you teach? *</label>
+                        <div class="skill-level">
+                            <div class="level-option" onclick="selectLevel(this)">
+                                <input type="radio" name="level" value="beginner" id="beginner">
+                                <label for="beginner">Beginner</label>
+                            </div>
+                            <div class="level-option" onclick="selectLevel(this)">
+                                <input type="radio" name="level" value="intermediate" id="intermediate">
+                                <label for="intermediate">Intermediate</label>
+                            </div>
+                            <div class="level-option" onclick="selectLevel(this)">
+                                <input type="radio" name="level" value="advanced" id="advanced">
+                                <label for="advanced">Advanced</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Years of Experience *</label>
+                        <input type="text" id="experience" name="experience" placeholder="e.g., 5 years" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🕐</span>
+                        Availability
+                    </h2>
+                    <div class="form-group">
+                        <label>When are you available to teach?</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="weekdays" name="availability" value="weekdays">
+                            <label for="weekdays">Weekdays</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="weekends" name="availability" value="weekends">
+                            <label for="weekends">Weekends</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="evenings" name="availability" value="evenings">
+                            <label for="evenings">Evenings</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="flexible" name="availability" value="flexible">
+                            <label for="flexible">Flexible Schedule</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🎯</span>
+                        Teaching Preferences
+                    </h2>
+                    <div class="form-group">
+                        <label>Preferred teaching format:</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="oneOnOne" name="format" value="oneOnOne">
+                            <label for="oneOnOne">One-on-One</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="group" name="format" value="group">
+                            <label for="group">Small Groups (3-5)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="online" name="format" value="online">
+                            <label for="online">Online Sessions</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="inPerson" name="format" value="inPerson">
+                            <label for="inPerson">In-Person</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Start Teaching Now! 🚀</button>
+            </form>
+        </div>
+
+        <div class="benefits">
+            <h2>Why Teach on SkillSwap Hub?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <div class="benefit-title">Earn While Teaching</div>
+                    <div class="benefit-desc">Set your own rates and earn money sharing what you love</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌍</div>
+                    <div class="benefit-title">Global Reach</div>
+                    <div class="benefit-desc">Connect with students from around the world</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⏰</div>
+                    <div class="benefit-title">Flexible Schedule</div>
+                    <div class="benefit-desc">Teach when it works for you, on your own time</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎓</div>
+                    <div class="benefit-title">Learn & Grow</div>
+                    <div class="benefit-desc">Exchange skills with other teachers in the community</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectLevel(element) {
+            // Remove selected class from all options
+            document.querySelectorAll('.level-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            // Check the radio button
+            element.querySelector('input[type="radio"]').checked = true;
+        }
+
+        document.getElementById('teachForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for applying to teach! We\'ll review your application and get back to you soon.');
+            this.reset();
+            document.querySelectorAll('.level-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+        });
+    </script>
+</body>
+</html>

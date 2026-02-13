@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - SkillSwap Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a.active {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 42px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .discussions-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .new-discussion-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .new-discussion-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .discussion-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .discussion-item {
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .discussion-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .discussion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 10px;
+        }
+
+        .discussion-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .discussion-category {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            background: #667eea;
+        }
+
+        .discussion-preview {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .discussion-meta {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .author-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar-card h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .trending-topic {
+            padding: 12px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .trending-topic:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .topic-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .topic-count {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .active-members {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .member-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .member-status {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .online-indicator {
+            width: 10px;
+            height: 10px;
+            background: #43e97b;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 968px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo">🎓 SkillSwap Hub</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="browse-skills.html">Browse Skills</a>
+                    <a href="teach.html">Teach</a>
+                    <a href="community.html" class="active">Community</a>
+                    <a href="profile.html">Profile</a>
+                </div>
+            </nav>
+        </header>
+
+        <h1>Community Hub</h1>
+
+        <div class="community-stats">
+            <div class="stat-card">
+                <div class="stat-number">12.5K</div>
+                <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3,247</div>
+                <div class="stat-label">Discussions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">856</div>
+                <div class="stat-label">Success Stories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1,423</div>
+                <div class="stat-label">Teachers</div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="discussions-section">
+                <div class="section-header">
+                    <h2 class="section-title">Discussions</h2>
+                    <button class="new-discussion-btn">+ New Discussion</button>
+                </div>
+
+                <div class="discussion-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Popular</button>
+                    <button class="filter-btn">Recent</button>
+                    <button class="filter-btn">Unanswered</button>
+                    <button class="filter-btn">My Posts</button>
+                </div>
+
+                <div class="discussion-item">
+                    <div class="discussion-header">
+                        <div>
+                            <div class="discussion-title">Best practices for teaching coding to complete beginners?</div>
+                            <span class="discussion-category">Technology</span>
+                        </div>
+                    </div>
+                    <p class="discussion-preview">
+                        I'm starting to teach web development to people with zero programming experience. What approaches have worked well for you? Should I start with HTML/CSS or jump straight into JavaScript concepts?
+                    </p>
+                    <div class="discussion-meta">
+                        <div class="meta-item">
+                            <div class="author-avatar">SK</div>
+                            <span>Sarah Kim</span>
+                        </div>
+                        <div class="meta-item">💬 24 replies</div>
+                        <div class="meta-item">👁 156 views</div>
+                        <div class="meta-item">🕐 2 hours ago</div>
+                    </div>
+                </div>
+
+                <div class="discussion-item">
+                    <div class="discussion-header">
+                        <div>
+                            <div class="discussion-title">How to price your skills appropriately?</div>
+                            <span class="discussion-category">Business</span>
+                        </div>
+                    </div>
+                    <p class="discussion-preview">
+                        I'm new to teaching on SkillSwap and wondering how everyone determines their hourly rates. Should I start lower to build reviews or price according to my experience level?
+                    </p>
+                    <div class="discussion-meta">
+                        <div class="meta-item">
+                            <div class="author-avatar">MT</div>
+                            <span>Michael Torres</span>
+                        </div>
+                        <div class="meta-item">💬 18 replies</div>
+                        <div class="meta-item">👁 203 views</div>
+                        <div class="meta-item">🕐 5 hours ago</div>
+                    </div>
+                </div>
+
+                <div class="discussion-item">
+                    <div class="discussion-header">
+                        <div>
+                            <div class="discussion-title">Success Story: From student to teacher in 6 months!</div>
+                            <span class="discussion-category">Success Stories</span>
+                        </div>
+                    </div>
+                    <p class="discussion-preview">
+                        I wanted to share my journey - I started learning Spanish on SkillSwap last year, and now I'm teaching conversational English to Spanish speakers. The community here changed my life!
+                    </p>
+                    <div class="discussion-meta">
+                        <div class="meta-item">
+                            <div class="author-avatar">EC</div>
+                            <span>Emma Chen</span>
+                        </div>
+                        <div class="meta-item">💬 42 replies</div>
+                        <div class="meta-item">👁 521 views</div>
+                        <div class="meta-item">🕐 1 day ago</div>
+                    </div>
+                </div>
+
+                <div class="discussion-item">
+                    <div class="discussion-header">
+                        <div>
+                            <div class="discussion-title">Tips for creating engaging online lessons?</div>
+                            <span class="discussion-category">Teaching Tips</span>
+                        </div>
+                    </div>
+                    <p class="discussion-preview">
+                        Transitioning from in-person to online teaching. What tools and techniques do you use to keep students engaged during video sessions? Looking for recommendations!
+                    </p>
+                    <div class="discussion-meta">
+                        <div class="meta-item">
+                            <div class="author-avatar">JW</div>
+                            <span>James Wilson</span>
+                        </div>
+                        <div class="meta-item">💬 15 replies</div>
+                        <div class="meta-item">👁 89 views</div>
+                        <div class="meta-item">🕐 3 hours ago</div>
+                    </div>
+                </div>
+
+                <div class="discussion-item">
+                    <div class="discussion-header">
+                        <div>
+                            <div class="discussion-title">Looking for a language exchange partner (Spanish/English)</div>
+                            <span class="discussion-category">Language Exchange</span>
+                        </div>
+                    </div>
+                    <p class="discussion-preview">
+                        Native English speaker looking to practice Spanish with a native Spanish speaker who wants to improve their English. Anyone interested in a regular exchange?
+                    </p>
+                    <div class="discussion-meta">
+                        <div class="meta-item">
+                            <div class="author-avatar">LP</div>
+                            <span>Lisa Parker</span>
+                        </div>
+                        <div class="meta-item">💬 7 replies</div>
+                        <div class="meta-item">👁 45 views</div>
+                        <div class="meta-item">🕐 4 hours ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3>🔥 Trending Topics</h3>
+                    <div class="trending-topic">
+                        <div class="topic-title">AI in Education</div>
+                        <div class="topic-count">127 discussions</div>
+                    </div>
+                    <div class="trending-topic">
+                        <div class="topic-title">Remote Teaching Tools</div>
+                        <div class="topic-count">94 discussions</div>
+                    </div>
+                    <div class="trending-topic">
+                        <div class="topic-title">Student Motivation</div>
+                        <div class="topic-count">78 discussions</div>
+                    </div>
+                    <div class="trending-topic">
+                        <div class="topic-title">Skill Exchange Ideas</div>
+                        <div class="topic-count">65 discussions</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>👥 Active Members</h3>
+                    <div class="active-members">
+                        <div class="member-item">
+                            <div class="member-avatar">AJ</div>
+                            <div class="member-info">
+                                <div class="member-name">Alex Johnson</div>
+                                <div class="member-status">Teaching: Web Dev</div>
+                            </div>
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">MR</div>
+                            <div class="member-info">
+                                <div class="member-name">Maria Rodriguez</div>
+                                <div class="member-status">Teaching: Spanish</div>
+                            </div>
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">DP</div>
+                            <div class="member-info">
+                                <div class="member-name">David Park</div>
+                                <div class="member-status">Teaching: Guitar</div>
+                            </div>
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">NT</div>
+                            <div class="member-info">
+                                <div class="member-name">Nina Taylor</div>
+                                <div class="member-status">Teaching: Yoga</div>
+                            </div>
+                            <div class="online-indicator"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // New discussion button
+        document.querySelector('.new-discussion-btn').addEventListener('click', function() {
+            alert('New discussion form would open here!');
+        });
+    </script>
+</body>
+</html>
