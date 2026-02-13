@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7MTNPSFXQJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7MTNPSFXQJ');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Swap Community Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 1.2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .nav-logo::before {
+            content: "🔄";
+            font-size: 2rem;
+            -webkit-text-fill-color: initial;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 1.2rem 1.5rem;
+            display: block;
+            position: relative;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        nav ul li a:hover {
+            color: #667eea;
+        }
+
+        nav ul li a:hover::before {
+            width: 80%;
+        }
+
+        nav ul li a.active {
+            color: #667eea;
+        }
+
+        nav ul li a.active::before {
+            width: 80%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            padding: 0.8rem 2rem !important;
+            border-radius: 50px;
+            margin-left: 1rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .nav-cta::before {
+            display: none;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #667eea;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            padding: 100px 2rem 2rem 2rem;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home Page */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 25px;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            color: #1a1a1a;
+            margin: 4rem 0 2rem 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Skill Categories Grid */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .skill-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .skill-card:hover::before {
+            opacity: 0.9;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .skill-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .skill-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .skill-card-content {
+            padding: 1.8rem;
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+
+        .skill-card:hover .skill-card-content {
+            color: white;
+        }
+
+        .skill-card h3 {
+            color: #667eea;
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+            transition: color 0.4s ease;
+        }
+
+        .skill-card:hover h3 {
+            color: white;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Registration Page */
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 3.5rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .form-container h2 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        /* About Us Page */
+        .about-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 4rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .about-section h2 {
+            color: #1a1a1a;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .about-section p {
+            font-size: 1.15rem;
+            margin-bottom: 1.8rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .feature-box h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Contact Page */
+        .contact-info {
+            max-width: 900px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .contact-info h2 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-method {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .contact-method h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul {
+                width: 100%;
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                gap: 0;
+            }
+
+            nav ul.active {
+                max-height: 500px;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                border-top: 1px solid #f0f0f0;
+            }
+
+            .nav-cta {
+                margin-left: 0;
+                margin: 0.5rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .skill-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-section, .form-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo" onclick="navigateTo('home')">SkillSwap Hub</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
+                <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                <li><a href="#" class="nav-link nav-cta" data-page="register">Join Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <h1>Skill Swap Community Hub</h1>
+            <p>Exchange Skills, Build Connections, Grow Together</p>
+            <button class="cta-button" onclick="navigateTo('register')">Start Swapping Today →</button>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">15K+</div>
+                <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Skills Exchanged</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Skill Categories</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Popular Skill Categories</h2>
+        <p class="section-subtitle">Discover what you can learn and teach in our vibrant community</p>
+        
+        <div class="skill-grid">
+            <div class="skill-card" onclick="navigateTo('music')">
+                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=500" alt="Music">
+                <div class="skill-card-content">
+                    <span class="skill-icon">🎸</span>
+                    <h3>Music & Arts</h3>
+                    <p>Guitar lessons, piano, painting, digital art, and more creative skills to express yourself.</p>
+                </div>
+            </div>
+
+            <div class="skill-card" onclick="navigateTo('technology')">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500" alt="Coding">
+                <div class="skill-card-content">
+                    <span class="skill-icon">💻</span>
+                    <h3>Technology</h3>
+                    <p>Web development, coding, app development, and tech support for the digital age.</p>
+                </div>
+            </div>
+
+            <div class="skill-card" onclick="navigateTo('languages')">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500" alt="Languages">
+                <div class="skill-card-content">
+                    <span class="skill-icon">🌍</span>
+                    <h3>Languages</h3>
+                    <p>Learn new languages through direct exchange with native speakers worldwide.</p>
+                </div>
+            </div>
+
+            <div class="skill-card" onclick="navigateTo('business')">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500" alt="Business">
+                <div class="skill-card-content">
+                    <span class="skill-icon">📊</span>
+                    <h3>Business Skills</h3>
+                    <p>Marketing, accounting, business strategy, and entrepreneurship knowledge.</p>
+                </div>
+            </div>
+
+            <div class="skill-card" onclick="navigateTo('fitness')">
+                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500" alt="Fitness">
+                <div class="skill-card-content">
+                    <span class="skill-icon">💪</span>
+                    <h3>Fitness & Wellness</h3>
+                    <p>Yoga, personal training, nutrition advice, and meditation practices.</p>
+                </div>
+            </div>
+
+            <div class="skill-card" onclick="navigateTo('crafts')">
+                <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=500" alt="Crafts">
+                <div class="skill-card-content">
+                    <span class="skill-icon">✂️</span>
+                    <h3>Crafts & DIY</h3>
+                    <p>Woodworking, knitting, home repair, and handmade crafts for your home.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials">
+            <h2 class="section-title">What Our Community Says</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I learned Spanish while teaching guitar. Best exchange ever! The platform made it so easy to find the perfect match."</p>
+                    <p class="testimonial-author">- Sarah M., Guitar Teacher</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Traded my coding skills for photography lessons. Now I have a new hobby and made a great friend!"</p>
+                    <p class="testimonial-author">- David L., Software Developer</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The matching algorithm is brilliant. Found someone with my exact schedule and skill level immediately."</p>
+                    <p class="testimonial-author">- Emma R., Marketing Specialist</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Page -->
+    <div id="register" class="page">
+        <div class="form-container">
+            <h2>Join Our Community</h2>
+            <p class="form-subtitle">Start your skill exchange journey today</p>
+            <div class="success-message" id="successMessage">
+                🎉 Registration successful! Welcome to Skill Swap Community Hub.
+            </div>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="skillOffer">Skills You Can Offer *</label>
+                    <input type="text" id="skillOffer" name="skillOffer" placeholder="e.g., Guitar lessons, Web development" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="skillLevel">Your Skill Level *</label>
+                    <select id="skillLevel" name="skillLevel" required>
+                        <option value="">Select your level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="skillWant">Skills You Want to Learn *</label>
+                    <input type="text" id="skillWant" name="skillWant" placeholder="e.g., Spanish, Cooking" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="availability">Availability *</label>
+                    <select id="availability" name="availability" required>
+                        <option value="">Select your availability</option>
+                        <option value="weekday-morning">Weekday Mornings</option>
+                        <option value="weekday-evening">Weekday Evenings</option>
+                        <option value="weekend">Weekends</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">About You</label>
+                    <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself and your experience..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Create Account →</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="page">
+        <div class="about-section">
+            <h2>About Skill Swap Community Hub</h2>
+            <p>
+                Welcome to Skill Swap Community Hub, where learning meets collaboration! We believe that everyone has valuable skills to share and knowledge to gain. Our platform connects individuals who want to exchange skills in a mutually beneficial way, creating a vibrant community of lifelong learners.
+            </p>
+            <p>
+                Whether you're a guitar virtuoso looking to learn coding, a language enthusiast wanting to master photography, or a business professional seeking culinary skills, our intelligent matching algorithm connects you with the perfect skill swap partner based on your availability, skill level, and interests.
+            </p>
+            <p>
+                Founded in 2024, we've facilitated thousands of successful skill exchanges, helping people grow professionally and personally while building meaningful connections. Our analytics-driven approach ensures optimal matches and tracks engagement to continuously improve your experience.
+            </p>
+
+            <div class="features">
+                <div class="feature-box">
+                    <h3>🎯 Smart Matching</h3>
+                    <p>Our AI algorithm matches you with compatible partners based on skills, availability, and learning styles.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📊 Track Progress</h3>
+                    <p>Monitor your learning journey with detailed analytics and achievement tracking.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🤝 Community Driven</h3>
+                    <p>Join a supportive community of 15,000+ learners committed to mutual growth.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>⚡ Flexible Schedule</h3>
+                    <p>Find partners who match your availability and learning pace perfectly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Page -->
+    <div id="contact" class="page">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p class="section-subtitle">Have questions or need support? We're here to help!</p>
+
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <h3>📧 Email</h3>
+                    <p>support@skillswaphub.com</p>
+                    <p>partnerships@skillswaphub.com</p>
+                </div>
+                <div class="contact-method">
+                    <h3>📱 Phone</h3>
+                    <p>+1 (555) 123-4567</p>
+                    <p>Mon-Fri: 9AM - 6PM EST</p>
+                </div>
+                <div class="contact-method">
+                    <h3>📍 Address</h3>
+                    <p>123 Learning Street</p>
+                    <p>Innovation City, IC 12345</p>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h2>Send Us a Message</h2>
+                <p class="form-subtitle">We'll get back to you within 24 hours</p>
+                <div class="success-message" id="contactSuccessMessage">
+                    ✅ Message sent successfully! We'll get back to you soon.
+                </div>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="contactName">Name *</label>
+                        <input type="text" id="contactName" name="contactName" placeholder="Your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactEmail">Email *</label>
+                        <input type="email" id="contactEmail" name="contactEmail" placeholder="your.email@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Tell us how we can help..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message →</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music & Arts Page -->
+    <div id="music" class="page">
+        <div class="about-section">
+            <h2>🎸 Music & Arts</h2>
+            <p>
+                Unleash your creative potential through our Music & Arts skill exchange community. Whether you're a seasoned musician looking to share your expertise or a complete beginner eager to learn, we have the perfect match for you.
+            </p>
+            <p>
+                Our community includes guitar teachers, piano instructors, digital artists, painters, vocalists, music producers, and more. Exchange your skills in a supportive environment where creativity flourishes.
+            </p>
+
+            <h3 style="color: #667eea; margin-top: 2rem; margin-bottom: 1rem;">Popular Skills in this Category:</h3>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>🎸 Guitar Lessons</h3>
+                    <p>Acoustic, electric, classical - all styles and levels welcome</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🎹 Piano & Keyboard</h3>
+                    <p>From basics to advanced composition and theory</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🎨 Digital Art</h3>
+                    <p>Photoshop, Illustrator, Procreate, and more</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🖌️ Traditional Art</h3>
+                    <p>Painting, drawing, sketching, watercolor techniques</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="cta-button" onclick="navigateTo('register')">Join Music & Arts Community →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology Page -->
+    <div id="technology" class="page">
+        <div class="about-section">
+            <h2>💻 Technology</h2>
+            <p>
+                Step into the digital age with our Technology skill exchange program. Connect with developers, designers, IT professionals, and tech enthusiasts who are ready to share their knowledge and learn from you.
+            </p>
+            <p>
+                From web development and mobile apps to cybersecurity and data science, our community covers all aspects of modern technology. Trade your coding skills for design expertise, or learn programming while teaching database management.
+            </p>
+
+            <h3 style="color: #667eea; margin-top: 2rem; margin-bottom: 1rem;">Popular Skills in this Category:</h3>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>🌐 Web Development</h3>
+                    <p>HTML, CSS, JavaScript, React, Node.js, and more</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📱 App Development</h3>
+                    <p>iOS, Android, Flutter, React Native development</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🎨 UI/UX Design</h3>
+                    <p>Figma, Adobe XD, user research, prototyping</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🔒 Cybersecurity</h3>
+                    <p>Network security, ethical hacking, data protection</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="cta-button" onclick="navigateTo('register')">Join Technology Community →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Languages Page -->
+    <div id="languages" class="page">
+        <div class="about-section">
+            <h2>🌍 Languages</h2>
+            <p>
+                Break down language barriers and connect with the world through our language exchange community. Practice with native speakers, learn authentic pronunciation, and immerse yourself in different cultures from the comfort of your home.
+            </p>
+            <p>
+                Our platform connects language learners worldwide. Whether you want to learn Spanish, Mandarin, French, Japanese, or any other language, you'll find enthusiastic partners ready for mutual language exchange.
+            </p>
+
+            <h3 style="color: #667eea; margin-top: 2rem; margin-bottom: 1rem;">Popular Languages to Exchange:</h3>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>🇪🇸 Spanish</h3>
+                    <p>Most requested language - connect with native speakers</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🇫🇷 French</h3>
+                    <p>Learn the language of love and culture</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🇨🇳 Mandarin Chinese</h3>
+                    <p>Master one of the world's most spoken languages</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🇯🇵 Japanese</h3>
+                    <p>Explore language, culture, and traditions</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="cta-button" onclick="navigateTo('register')">Join Language Community →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Business Page -->
+    <div id="business" class="page">
+        <div class="about-section">
+            <h2>📊 Business Skills</h2>
+            <p>
+                Elevate your professional game with our Business Skills exchange network. Connect with entrepreneurs, marketers, accountants, and business strategists who are eager to share their expertise and expand their own knowledge.
+            </p>
+            <p>
+                From startup fundamentals to advanced financial modeling, our community helps you develop the business acumen needed to succeed in today's competitive landscape. Trade marketing skills for accounting knowledge, or learn sales while teaching project management.
+            </p>
+
+            <h3 style="color: #667eea; margin-top: 2rem; margin-bottom: 1rem;">Popular Skills in this Category:</h3>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>📈 Digital Marketing</h3>
+                    <p>SEO, social media, content marketing, analytics</p>
+                </div>
+                <div class="feature-box">
+                    <h3>💼 Business Strategy</h3>
+                    <p>Planning, operations, competitive analysis</p>
+                </div>
+                <div class="feature-box">
+                    <h3>💰 Accounting & Finance</h3>
+                    <p>Bookkeeping, financial planning, budgeting</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🚀 Entrepreneurship</h3>
+                    <p>Startup advice, fundraising, business models</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="cta-button" onclick="navigateTo('register')">Join Business Community →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fitness Page -->
+    <div id="fitness" class="page">
+        <div class="about-section">
+            <h2>💪 Fitness & Wellness</h2>
+            <p>
+                Transform your health and wellbeing through our Fitness & Wellness skill exchange community. Connect with certified trainers, yoga instructors, nutritionists, and wellness coaches who are passionate about helping others achieve their health goals.
+            </p>
+            <p>
+                Whether you're looking to learn proper form, develop a nutrition plan, or master meditation techniques, our community offers a holistic approach to health. Exchange your fitness knowledge while learning about mindfulness, or teach yoga while learning about strength training.
+            </p>
+
+            <h3 style="color: #667eea; margin-top: 2rem; margin-bottom: 1rem;">Popular Skills in this Category:</h3>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>🧘 Yoga & Meditation</h3>
+                    <p>Hatha, Vinyasa, mindfulness, breathing techniques</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🏋️ Personal Training</h3>
+                    <p>Strength training, HIIT, bodyweight exercises</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🥗 Nutrition Coaching</h3>
+                    <p>Meal planning, diet advice, healthy eating habits</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🏃 Running & Cardio</h3>
+                    <p>Training plans, endurance building, technique</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="cta-button" onclick="navigateTo('register')">Join Fitness Community →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Crafts Page -->
+    <div id="crafts" class="page">
+        <div class="about-section">
+            <h2>✂️ Crafts & DIY</h2>
+            <p>
+                Discover the joy of creating with your hands through our Crafts & DIY skill exchange community. Connect with artisans, woodworkers, sewers, and makers who love to share their craft and learn new techniques.
+            </p>
+            <p>
+                From traditional crafts passed down through generations to modern maker movement projects, our community celebrates creativity in all its forms. Trade your knitting expertise for woodworking lessons, or learn pottery while teaching home repair skills.
+            </p>
+
+            <h3 style="color: #667eea; margin-top: 2rem; margin-bottom: 1rem;">Popular Skills in this Category:</h3>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>🪵 Woodworking</h3>
+                    <p>Furniture making, carving, joinery techniques</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🧶 Knitting & Sewing</h3>
+                    <p>Patterns, garment construction, embroidery</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🔧 Home Repair</h3>
+                    <p>Basic plumbing, electrical, carpentry skills</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🏺 Pottery & Ceramics</h3>
+                    <p>Wheel throwing, hand building, glazing</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="cta-button" onclick="navigateTo('register')">Join Crafts Community →</button>
+            </div>
+        </div>
+    </div>
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p class="section-subtitle">Have questions or need support? We're here to help!</p>
+
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <h3>📧 Email</h3>
+                    <p>support@skillswaphub.com</p>
+                    <p>partnerships@skillswaphub.com</p>
+                </div>
+                <div class="contact-method">
+                    <h3>📱 Phone</h3>
+                    <p>+1 (555) 123-4567</p>
+                    <p>Mon-Fri: 9AM - 6PM EST</p>
+                </div>
+                <div class="contact-method">
+                    <h3>📍 Address</h3>
+                    <p>123 Learning Street</p>
+                    <p>Innovation City, IC 12345</p>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h2>Send Us a Message</h2>
+                <p class="form-subtitle">We'll get back to you within 24 hours</p>
+                <div class="success-message" id="contactSuccessMessage">
+                    ✅ Message sent successfully! We'll get back to you soon.
+                </div>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="contactName">Name *</label>
+                        <input type="text" id="contactName" name="contactName" placeholder="Your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactEmail">Email *</label>
+                        <input type="email" id="contactEmail" name="contactEmail" placeholder="your.email@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Tell us how we can help..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message →</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const navMenu = document.getElementById('navMenu');
+
+        function toggleMenu() {
+            navMenu.classList.toggle('active');
+        }
+
+        function navigateTo(pageName) {
+    pages.forEach(page => page.classList.remove('active'));
+    navLinks.forEach(link => link.classList.remove('active'));
+
+    document.getElementById(pageName).classList.add('active');
+    const activeLink = document.querySelector(`[data-page="${pageName}"]`);
+    if (activeLink) activeLink.classList.add('active');
+
+    navMenu.classList.remove('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 🔥 IMPORTANT: Send page view to Google Analytics
+    if (typeof gtag === "function") {
+        gtag('event', 'page_view', {
+            page_title: pageName,
+            page_path: '/' + pageName
+        });
+    }
+}
+
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageName = link.getAttribute('data-page');
+                navigateTo(pageName);
+            });
+        });
+
+        // Registration form submission
+        document.getElementById('registrationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                skillOffer: document.getElementById('skillOffer').value,
+                skillLevel: document.getElementById('skillLevel').value,
+                skillWant: document.getElementById('skillWant').value,
+                availability: document.getElementById('availability').value,
+                bio: document.getElementById('bio').value,
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('Registration Data:', formData);
+
+            document.getElementById('successMessage').classList.add('show');
+            document.getElementById('registrationForm').reset();
+
+            setTimeout(() => {
+                document.getElementById('successMessage').classList.remove('show');
+                navigateTo('home');
+            }, 3000);
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('Contact Form Data:', formData);
+
+            document.getElementById('contactSuccessMessage').classList.add('show');
+            document.getElementById('contactForm').reset();
+
+            setTimeout(() => {
+                document.getElementById('contactSuccessMessage').classList.remove('show');
+            }, 3000);
+        });
+
+        // Skill card click functionality
+        function showSkillDetails(skillCategory) {
+            const message = `🎯 Interested in ${skillCategory}?\n\nJoin our community now to:\n✓ Find your perfect skill swap partner\n✓ Start learning immediately\n✓ Connect with experts in this field`;
+            alert(message);
+            navigateTo('register');
+        }
+    </script>
+</body>
+</html>
