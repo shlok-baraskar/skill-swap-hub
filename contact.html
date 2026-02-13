@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7MTNPSFXQJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7MTNPSFXQJ');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Skill Swap Community Hub</title>
+    <meta name="description" content="Get in touch with Skill Swap Community Hub. We're here to help with any questions or support you need.">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "vgukmbtww1");
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">SkillSwap Hub</a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="register.html" class="nav-cta">Join Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Info -->
+    <div class="page active">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p class="section-subtitle">Have questions or need support? We're here to help!</p>
+
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <h3>📧 Email</h3>
+                    <p>support@skillswaphub.com</p>
+                    <p>partnerships@skillswaphub.com</p>
+                </div>
+                <div class="contact-method">
+                    <h3>📱 Phone</h3>
+                    <p>+1 (555) 123-4567</p>
+                    <p>Mon-Fri: 9AM - 6PM EST</p>
+                </div>
+                <div class="contact-method">
+                    <h3>📍 Address</h3>
+                    <p>123 Learning Street</p>
+                    <p>Innovation City, IC 12345</p>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h2>Send Us a Message</h2>
+                <p class="form-subtitle">We'll get back to you within 24 hours</p>
+                <div class="success-message" id="contactSuccessMessage">
+                    ✅ Message sent successfully! We'll get back to you soon.
+                </div>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="contactName">Name *</label>
+                        <input type="text" id="contactName" name="contactName" placeholder="Your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactEmail">Email *</label>
+                        <input type="email" id="contactEmail" name="contactEmail" placeholder="your.email@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Tell us how we can help..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message →</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
